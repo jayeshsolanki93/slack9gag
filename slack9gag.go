@@ -1,13 +1,18 @@
-package slack9gag
+package main
 
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
-func init() {
+func main() {
 	http.HandleFunc("/", handler)
 	fmt.Println("listening...")
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
