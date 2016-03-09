@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
@@ -20,8 +21,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	command := r.FormValue("command")
 
 	if command == "/9gag" {
-		fmt.Fprint(w, "Hello World")
+		jsonResp(w, "Hello World")
 	} else {
 		fmt.Fprint(w, "I do not understand your command.")
 	}
+}
+
+func jsonResp(w http.ResponseWriter, msg string) {
+	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	resp := map[string]string{"text": msg}
+	r, err := json.Marshal(resp)
+	if err != nil {
+		fmt.Println("Couldn't marshal hook response:", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.Write(r)
 }
