@@ -9,14 +9,14 @@ import (
 )
 
 type Response struct {
-	Text        string
-	Attachments []Attachments
+	Text        string        `json:"text"`
+	Attachments []Attachments `json:"attachments"`
 }
 
 type Attachments struct {
-	Title      string
-	Title_link string
-	Thumb_url  string
+	Title      string `json:"title"`
+	Title_link string `json:"title_link"`
+	Thumb_url  string `json:"thumb_url"`
 }
 
 type jsonData struct {
