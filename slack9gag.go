@@ -83,8 +83,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func jsonResp(w http.ResponseWriter, x *jsonData) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
-	attachments := make([]Attachments, 10)
-	for i := 0; i < 9; i++ {
+	attachments := make([]Attachments, len(x.Data))
+	for i := 0; i < len(x.Data); i++ {
 		attachments[i] = Attachments{
 			Title:      x.Data[i].Caption,
 			Title_link: x.Data[i].Link,
