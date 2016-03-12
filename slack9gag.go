@@ -58,6 +58,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	command := r.FormValue("command")
 
 	if command == "/9gag" {
+		text := r.FormValue("text")
+		fmt.Println(text)
 		r, err := http.Get("http://infinigag.k3min.eu")
 		if err != nil {
 			fmt.Println("Error requesting data")
