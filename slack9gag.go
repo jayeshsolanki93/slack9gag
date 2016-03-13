@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
 )
 
 type Response struct {
@@ -54,13 +55,59 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
+
+	url := "http://infinigag.k3min.eu"
 	// Read the Request Parameter "command"
 	command := r.FormValue("command")
 
 	if command == "/9gag" {
+		// Read the Request Parameter "text"
 		text := r.FormValue("text")
-		fmt.Println(text)
-		r, err := http.Get("http://infinigag.k3min.eu")
+		s := strings.Split(text, " ")
+		var section string
+		var subsection string
+		if len(s) == 2 {
+			section = s[0]
+			subsection = s[1]
+		} else if len(s) == 1 {
+			section = s[0]
+		}
+		switch section {
+		case "cute":
+			url += "/cute"
+		case "cosplay":
+			url += "/cosplay"
+		case "design":
+			url += "/design"
+		case "food":
+			url += "/food"
+		case "funny":
+			url += "/funny"
+		case "geeky":
+			url += "/geeky"
+		case "gif":
+			url += "/gif"
+		case "girl":
+			url += "/girl"
+		case "meme":
+			url += "/meme"
+		case "nsfw":
+			url += "/nsfw"
+		case "timely":
+			url += "/timely"
+		case "wtf":
+			url += "/wtf"
+		}
+
+		switch subsection {
+		case "fresh":
+			url += "/fresh"
+		case "trending":
+			url += "trending"
+		}
+
+		fmt.Println(url)
+		r, err := http.Get(url)
 		if err != nil {
 			fmt.Println("Error requesting data")
 			return
