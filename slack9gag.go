@@ -73,6 +73,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			section = s[0]
 		}
 		switch section {
+		case "":
 		case "cute":
 			url += "/cute"
 		case "cosplay":
@@ -97,13 +98,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			url += "/timely"
 		case "wtf":
 			url += "/wtf"
+		default:
+			fmt.Fprint(w, "I do not understand your command.")
+			return
 		}
 
 		switch subsection {
+		case "":
 		case "fresh":
 			url += "/fresh"
 		case "trending":
 			url += "trending"
+		default:
+			fmt.Fprint(w, "I do not understand your command.")
+			return
 		}
 
 		fmt.Println(url)
