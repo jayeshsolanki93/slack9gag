@@ -107,8 +107,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		case "":
 		case "fresh":
 			url += "/fresh"
-		case "trending":
-			url += "trending"
+		case "hot":
+			url += "/hot"
 		default:
 			fmt.Fprint(w, "I do not understand your command.")
 			return
