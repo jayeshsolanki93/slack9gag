@@ -76,6 +76,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		case "":
 		case "cute":
 			url += "/cute"
+		case "comic":
+			url += "/comic"
 		case "cosplay":
 			url += "/cosplay"
 		case "design":
