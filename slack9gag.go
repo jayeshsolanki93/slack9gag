@@ -17,7 +17,7 @@ type Response struct {
 type Attachments struct {
 	Title      string `json:"title"`
 	Title_link string `json:"title_link"`
-	Thumb_url  string `json:"thumb_url"`
+	Image_url  string `json:"image_url"`
 }
 
 type jsonData struct {
@@ -147,7 +147,7 @@ func jsonResp(w http.ResponseWriter, x *jsonData) {
 		attachments[i] = Attachments{
 			Title:      x.Data[i].Caption,
 			Title_link: x.Data[i].Link,
-			Thumb_url:  x.Data[i].Images.Small,
+			Image_url:  x.Data[i].Images.Small,
 		}
 	}
 
