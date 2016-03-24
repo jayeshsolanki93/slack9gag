@@ -63,15 +63,21 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if command == "/9gag" {
 		// Read the Request Parameter "text"
 		text := r.FormValue("text")
+		respText := "9gag\n"
+
 		s := strings.Split(text, " ")
 		var section string
 		var subsection string
 		if len(s) == 2 {
 			section = s[0]
 			subsection = s[1]
+			respText += "Section: " + section + ", "
+			respText += "Sub-section: " + subsection
 		} else if len(s) == 1 {
 			section = s[0]
+			respText += " Section: " + section
 		}
+
 		switch section {
 		case "":
 		case "cute":
@@ -133,13 +139,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Error while parsing file", err)
 			return
 		}
-		jsonResp(w, x)
+		jsonResp(w, x, respText)
 	} else {
 		fmt.Fprint(w, "I do not understand your command.")
 	}
 }
 
-func jsonResp(w http.ResponseWriter, x *jsonData) {
+func jsonResp(w http.ResponseWriter, x *jsonData, respText string) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 
 	attachments := make([]Attachments, len(x.Data))
@@ -152,7 +158,7 @@ func jsonResp(w http.ResponseWriter, x *jsonData) {
 	}
 
 	resp := Response{
-		Text:        "lorem ipsum",
+		Text:        respText,
 		Attachments: attachments,
 	}
 
