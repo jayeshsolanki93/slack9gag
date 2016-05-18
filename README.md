@@ -8,6 +8,25 @@ Browse 9gag right from Slack (Uses [infinigag](https://github.com/k3min/infiniga
 
 From any Slack channel, just type `/9gag [section] [sub-section]`. The content will be visible just to you.
 
+#### Sections:
+ - cute
+ - comic
+ - cosplay
+ - design
+ - food
+ - funny
+ - geeky
+ - gif
+ - girl
+ - meme
+ - nsfw
+ - timely
+ - wtf
+
+#### Sub-sections:
+ - fresh
+ - hot
+
 ## Integrate with your team
 
 1. Go to your channel
