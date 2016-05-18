@@ -13,7 +13,7 @@ From any Slack channel, just type `/9gag [section] [sub-section]`. The content w
 1. Go to your channel
 2. Click on **Apps and integration** and find **Slash Commands**.
 3. Click **Install** on front of a team name to install slash command.
-  - Command: `/overflow`
+  - Command: `/9gag`
   - URL: `slack9gag.herokuapp.com`
   - Method: `POST`
   - For the **Autocomplete help text**, check to show the command in autocomplete list.
